@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101a35">
+<title>CeylonToolza | All-in-One Tools</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:#18233d;background:#f6f8fc}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+.container{width:min(1150px,92%);margin:auto}
+header{position:sticky;top:0;background:#ffffffed;backdrop-filter:blur(12px);z-index:20;border-bottom:1px solid #e6eaf2}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:23px;font-weight:900;color:#3768ee}
+.logo b{background:linear-gradient(130deg,#3768ee,#7951df);color:white;padding:9px;border-radius:12px;margin-right:7px}
+.links{display:flex;gap:22px;font-size:14px;font-weight:bold}
+.links a:hover{color:#3768ee}
+.btn{display:inline-block;border:0;border-radius:11px;padding:12px 19px;font-weight:bold;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-3px)}
+.primary{background:#3768ee;color:white}
+.secondary{background:#edf2ff;color:#3768ee}
+.outline{border:1px solid #dce2ee;background:white;color:#18233d}
+.menu{display:none;padding:9px;border:0;border-radius:9px}
+.hero{background:radial-gradient(circle at 80% 20%,#3768ee66,transparent 30%),linear-gradient(120deg,#101a35,#244a91);color:white;overflow:hidden}
+.hero-inner{min-height:490px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;padding:65px 0}
+.eyebrow{display:inline-block;background:#ffffff18;border:1px solid #ffffff44;padding:9px 15px;border-radius:30px;color:#cce0ff;font-size:12px}
+.hero h1{font-size:clamp(40px,5vw,65px);line-height:1.08;margin:22px 0}
+.hero h1 span{color:#7be3f0}
+.hero p{color:#d0dcf2;line-height:1.8;max-width:550px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.hero .outline{background:#ffffff16;color:white;border-color:#ffffff55}
+.hero-art{height:330px;display:grid;place-items:center;position:relative}
+.orbit{width:290px;height:290px;border:1px solid #ffffff55;border-radius:50%;display:grid;place-items:center;position:relative;animation:rotate 35s linear infinite}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #ffffff35;border-radius:50%;inset:13%}
+.orbit:after{inset:27%}
+.center-icon{width:105px;height:110px;border-radius:25px;background:white;color:#3768ee;display:grid;place-items:center;font-size:48px;box-shadow:0 20px 60px #0005;animation:float 4s infinite}
+.float-icon{position:absolute;background:white;color:#3768ee;border-radius:17px;padding:17px;font-size:25px;box-shadow:0 10px 25px #0004;animation:float 4s infinite}
+.fi1{top:10%;left:7%}.fi2{top:12%;right:5%;animation-delay:1s}.fi3{bottom:8%;left:8%;animation-delay:1.5s}.fi4{bottom:8%;right:7%;animation-delay:2s}
+@keyframes float{50%{transform:translateY(-13px)}}
+@keyframes rotate{to{transform:rotate(360deg)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeup .8s ease both}
+.trust{background:white;border-bottom:1px solid #e6eaf2;padding:20px;text-align:center;color:#73809a;font-weight:bold;font-size:13px}
+section{padding:75px 0}
+.soft{background:#f0f4fb}
+.section-head{text-align:center;max-width:700px;margin:0 auto 35px}
+.kicker{color:#3768ee;font-size:12px;font-weight:900;letter-spacing:1.5px}
+.section-head h2{font-size:clamp(28px,4vw,42px);margin:12px 0}
+.section-head p{color:#68748d;line-height:1.7}
+.controls{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{border:1px solid #e0e5ef;background:white;border-radius:30px;padding:9px 14px;cursor:pointer}
+.filter.active{background:#3768ee;color:white}
+.search{padding:11px;border:1px solid #e0e5ef;border-radius:11px;min-width:230px}
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.tool{background:white;border:1px solid #e5eaf2;border-radius:17px;padding:19px;transition:.25s;display:flex;flex-direction:column;min-height:180px}
+.tool:hover,.plan:hover,.how-card:hover{transform:translateY(-6px);box-shadow:0 15px 35px #18233d18}
+.tool-icon{width:44px;height:44px;background:#edf2ff;color:#3768ee;border-radius:13px;display:grid;place-items:center;font-size:23px;margin-bottom:13px}
+.tool h3{font-size:15px;margin-bottom:7px}
+.tool p{font-size:12px;color:#68748d;line-height:1.6;flex:1}
+.tool-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.tag{font-size:10px;font-weight:bold;background:#eaf7f0;color:#16845d;padding:5px 9px;border-radius:20px}
+.tag.pro{background:#fff2df;color:#a66a10}
+.tag.premium{background:#f0eaff;color:#7048c8}
+.open-tool{border:0;background:none;color:#3768ee;font-weight:bold;cursor:pointer}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.how-card{background:white;padding:25px;border:1px solid #e5eaf2;border-radius:17px;transition:.25s}
+.step{background:#edf2ff;color:#3768ee;padding:12px;border-radius:12px;display:inline-block;font-weight:bold;margin-bottom:15px}
+.how-card h3{margin-bottom:9px}
+.how-card p{color:#68748d;font-size:13px;line-height:1.7}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.plan{background:white;border:1px solid #e5eaf2;border-radius:20px;padding:27px;transition:.25s;display:flex;flex-direction:column}
+.plan.featured{border:2px solid #3768ee;box-shadow:0 15px 40px #3768ee20}
+.popular{background:#3768ee;color:white;padding:6px 12px;border-radius:20px;font-size:10px;align-self:flex-end}
+.plan h3{font-size:20px;margin:10px 0}
+.plan-desc{font-size:12px;color:#68748d}
+.price{font-size:37px;font-weight:900;margin:20px 0 5px}
+.price small{font-size:12px;color:#68748d;font-weight:normal}
+.features{list-style:none;margin:15px 0 25px;flex:1}
+.features li{font-size:13px;margin:13px 0;color:#526078}
+.features li:before{content:"✓";color:#15966a;font-weight:bold;margin-right:9px}
+.plan .btn{width:100%;text-align:center}
+.faq{max-width:800px;margin:auto}
+.faq details{background:white;border:1px solid #e5eaf2;padding:18px;border-radius:13px;margin:10px 0}
+.faq summary{font-weight:bold;cursor:pointer}
+.faq p{color:#68748d;font-size:13px;line-height:1.7;margin-top:12px}
+.cta{background:linear-gradient(110deg,#15264b,#3768ee);padding:40px;border-radius:22px;color:white;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.cta p{color:#d4e0fa;margin-top:9px;line-height:1.6}
+.cta .btn{background:white;color:#3768ee}
+footer{background:#0d1730;color:white;padding:50px 0 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px}
+footer p{color:#9eacc6;font-size:13px;line-height:1.8;margin-top:15px}
+footer h4{margin-bottom:15px}
+footer a{display:block;color:#b7c4dc;font-size:13px;margin:11px 0}
+footer a:hover{color:white}
+.copyright{border-top:1px solid #293653;margin-top:30px;padding-top:20px;color:#8796b2;font-size:12px}
+.modal-bg{display:none;position:fixed;inset:0;background:#08132bc9;z-index:100;align-items:center;justify-content:center;padding:15px}
+.modal-bg.show{display:flex}
+.modal{background:white;border-radius:18px;padding:25px;width:min(570px,100%);max-height:90vh;overflow:auto}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.close{border:0;background:#edf1f8;border-radius:9px;padding:8px 12px;cursor:pointer}
+.modal p{color:#68748d;font-size:13px;line-height:1.7;margin:12px 0}
+.field{margin:12px 0}
+.field label{display:block;font-weight:bold;font-size:12px;margin-bottom:7px}
+.field input,.field textarea{width:100%;padding:12px;border:1px solid #dce2ee;border-radius:10px}
+.field textarea{min-height:110px}
+.output{background:#f4f6fa;padding:14px;border-radius:11px;margin-top:12px;white-space:pre-wrap;font-size:13px}
+.notice{background:#fff6e6;color:#93610d;padding:13px;border-radius:11px;font-size:12px;line-height:1.6}
+@media(max-width:850px){.links{display:none;position:absolute;top:70px;left:4%;right:4%;background:white;padding:18px;border-radius:12px;box-shadow:0 10px 30px #0002;flex-direction:column}.links.show{display:flex}.menu{display:block}.hero-inner{grid-template-columns:1fr}.hero-art{height:260px}.tool-grid{grid-template-columns:repeat(2,1fr)}.plans{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.cta{display:block}.cta .btn{margin-top:20px}}
+@media(max-width:480px){.tool-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.hero h1{font-size:40px}.search{width:100%}.hero-inner{padding:45px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav class="container">
+<a class="logo" href="#home"><b>✦</b>CeylonToolza</a>
+<div class="links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#tools">Tools</a>
+<a href="#how">How It Works</a>
+<a href="#pricing">Plans</a>
+<a href="#faq">FAQ</a>
+<a href="#about">About Us</a>
+<a href="#contact">Contact</a>
+</div>
+<div>
+<button class="btn secondary" onclick="loginInfo()">Log In</button>
+<button class="menu" onclick="toggleMenu()">☰</button>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="container hero-inner">
+<div>
+<div class="eyebrow">✦ YOUR EVERYDAY DIGITAL TOOLBOX</div>
+<h1>All your useful tools.<br><span>One simple place.</span></h1>
+<p>Work smarter with useful PDF, image, document and text tools. Simple to use, easy to access, and made for everyday tasks.</p>
+<div class="hero-actions">
+<a class="btn primary" href="#tools">Explore Tools →</a>
+<a class="btn outline" href="#pricing">View Plans</a>
+</div>
+</div>
+<div class="hero-art">
+<div class="orbit">
+<div class="center-icon">✦</div>
+<div class="float-icon fi1">📄</div>
+<div class="float-icon fi2">🖼️</div>
+<div class="float-icon fi3">⚡</div>
+<div class="float-icon fi4">🔧</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="trust">PDF TOOLS　 •　 IMAGE TOOLS　 •　 DOCUMENT TOOLS　 •　 TEXT TOOLS　 •　 UTILITIES</div>
+
+<section id="tools">
+<div class="container">
+<div class="section-head">
+<div class="kicker">EXPLORE THE TOOLBOX</div>
+<h2>Useful tools, all in one place</h2>
+<p>Choose a tool and make your everyday digital tasks easier.</p>
+</div>
+<div class="controls">
+<div class="filters">
+<button class="filter active" onclick="setFilter('All',this)">All</button>
+<button class="filter" onclick="setFilter('PDF',this)">PDF</button>
+<button class="filter" onclick="setFilter('Images',this)">Images</button>
+<button class="filter" onclick="setFilter('Text',this)">Text</button>
+<button class="filter" onclick="setFilter('Other',this)">Other</button>
+</div>
+<input class="search" id="search" placeholder="Search tools..." oninput="renderTools()">
+</div>
+<div class="tool-grid" id="toolGrid"></div>
+</div>
+</section>
+
+<section class="soft" id="how">
+<div class="container">
+<div class="section-head">
+<div class="kicker">SIMPLE WORKFLOW</div>
+<h2>Get things done in three steps</h2>
+<p>Choose your tool, add your content and download your result.</p>
+</div>
+<div class="how-grid">
+<div class="how-card"><div class="step">01</div><h3>Choose a tool</h3><p>Find the PDF, image, text or utility tool you need.</p></div>
+<div class="how-card"><div class="step">02</div><h3>Add your content</h3><p>Upload your file or enter the information required.</p></div>
+<div class="how-card"><div class="step">03</div><h3>Download your result</h3><p>Process your task and save the finished file.</p></div>
+</div>
+</div>
+</section>
+
+<section id="pricing">
+<div class="container">
+<div class="section-head">
+<div class="kicker">SIMPLE PRICING</div>
+<h2>Choose your plan</h2>
+<p>Start free and upgrade whenever you need more tools.</p>
+</div>
+<div class="plans">
+<div class="plan">
+<h3>Free</h3>
+<p class="plan-desc">For everyday basic tasks.</p>
+<div class="price">Rs. 0 <small>/ forever</small></div>
+<ul class="features">
+<li>Free tools access</li>
+<li>Basic utilities</li>
+<li>Desktop and mobile access</li>
+<li>No monthly payment</li>
+</ul>
+<button class="btn outline" onclick="choosePlan('Free')">Start Free</button>
+</div>
+
+<div class="plan featured">
+<div class="popular">POPULAR</div>
+<h3>Pro</h3>
+<p class="plan-desc">For regular users.</p>
+<div class="price">Rs. 490 <small>/ month</small></div>
+<ul class="features">
+<li>Everything in Free</li>
+<li>Pro tools access</li>
+<li>More usage options</li>
+<li>Document and image tools</li>
+<li>Standard support</li>
+</ul>
+<button class="btn primary" onclick="choosePlan('Pro')">Choose Pro</button>
+</div>
+
+<div class="plan">
+<h3>Premium</h3>
+<p class="plan-desc">For users who need more.</p>
+<div class="price">Rs. 990 <small>/ month</small></div>
+<ul class="features">
+<li>Everything in Pro</li>
+<li>Premium tools access</li>
+<li>Higher usage limits</li>
+<li>Advanced tools</li>
+<li>Priority support</li>
+</ul>
+<button class="btn outline" onclick="choosePlan('Premium')">Choose Premium</button>
+</div>
+</div>
+<p style="text-align:center;color:#68748d;font-size:12px;margin-top:20px">Payment and account activation are not connected yet. Do not transfer money until the official payment system is ready.</p>
+</div>
+</section>
+
+<section class="soft" id="faq">
+<div class="container">
+<div class="section-head">
+<div class="kicker">HELP & SUPPORT</div>
+<h2>Frequently asked questions</h2>
+</div>
+<div class="faq">
+<details><summary>Can I use CeylonToolza for free?</summary><p>Yes. The Free plan is intended to remain free forever.</p></details>
+<details><summary>How much is the Pro plan?</summary><p>The Pro plan is Rs. 490 per month.</p></details>
+<details><summary>How much is the Premium plan?</summary><p>The Premium plan is Rs. 990 per month.</p></details>
+<details><summary>Do I need to install an application?</summary><p>No. CeylonToolza is designed as a website that works in a browser.</p></details>
+<details><summary>Are all tools available now?</summary><p>Some basic tools work in this version. Other advanced tools will be added in future updates.</p></details>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<div class="section-head">
+<div class="kicker">ABOUT US</div>
+<h2>Welcome to CeylonToolza</h2>
+<p>CeylonToolza is an all-in-one online toolbox created to make everyday digital tasks easier. Our goal is to bring useful PDF, image, document and text tools together in one simple and convenient website. We want students, creators, small businesses and everyday users to spend less time switching between websites and more time getting things done. We are building CeylonToolza step by step to make digital work simpler for everyone.</p>
+</div>
+</div>
+</section>
+
+<section class="soft" id="contact">
+<div class="container">
+<div class="section-head">
+<div class="kicker">CONTACT US</div>
+<h2>We're here to help</h2>
+<p>Have a question, need help or want to share feedback? Contact us through WhatsApp.</p>
+<br>
+<p><b>WhatsApp Support: +94 75 6 700 710</b></p>
+<br>
+<a class="btn primary" href="https://wa.me/94756700710?text=Hello%20CeylonToolza%20Support" target="_blank" rel="noopener">Chat on WhatsApp →</a>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="cta">
+<div><h2>Make everyday work easier.</h2><p>Explore the toolbox and find a simpler way to complete your tasks.</p></div>
+<a class="btn" href="#tools">Explore Tools →</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div>
+<a class="logo" href="#home" style="color:white">✦ CeylonToolza</a>
+<p>An all-in-one online toolbox for PDF, image, document and text tasks. Built to make everyday digital work easier.</p>
+</div>
+<div>
+<h4>Explore</h4>
+<a href="#tools">All Tools</a>
+<a href="#pricing">Plans & Pricing</a>
+<a href="#how">How It Works</a>
+<a href="#faq">FAQ</a>
+</div>
+<div>
+<h4>Information</h4>
+<a href="#about">About Us</a>
+<a href="#contact">Contact Us</a>
+<a href="#" onclick="showLegal('Privacy Policy');return false">Privacy Policy</a>
+<a href="#" onclick="showLegal('Terms & Conditions');return false">Terms & Conditions</a>
+<a href="#" onclick="showLegal('Refund Policy');return false">Refund Policy</a>
+</div>
+</div>
+<div class="copyright">© <span id="year"></span> CeylonToolza. All rights reserved.</div>
+</div>
+</footer>
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+<div class="modal">
+<div class="modal-head"><h3 id="modalTitle">Information</h3><button class="close" onclick="closeModal()">✕</button></div>
+<div id="modalBody"></div>
+</div>
+</div>
+
+<script>
+const tools=[
+{name:"Word Counter",cat:"Text",icon:"🔤",plan:"Free",desc:"Count words and characters.",ready:true},
+{name:"Text Case Converter",cat:"Text",icon:"Aa",plan:"Free",desc:"Change uppercase and lowercase.",ready:true},
+{name:"Price Calculator",cat:"Other",icon:"🧮",plan:"Free",desc:"Calculate quantities and prices.",ready:true},
+{name:"Image Resize",cat:"Images",icon:"↔️",plan:"Free",desc:"Resize your images.",ready:true},
+{name:"Image Compress",cat:"Images",icon:"🗜️",plan:"Pro",desc:"Reduce image file size.",ready:true},
+{name:"Image to PDF",cat:"PDF",icon:"🖼️",plan:"Free",desc:"Convert images into PDF.",ready:true},
+{name:"QR Code Generator",cat:"Other",icon:"▦",plan:"Free",desc:"Create QR codes.",ready:true},
+{name:"PDF Merge",cat:"PDF",icon:"📚",plan:"Pro",desc:"Combine PDF files.",ready:false},
+{name:"PDF Split",cat:"PDF",icon:"✂️",plan:"Pro",desc:"Split PDF pages.",ready:false},
+{name:"PDF Compress",cat:"PDF",icon:"📉",plan:"Pro",desc:"Reduce PDF file size.",ready:false},
+{name:"PDF to Word",cat:"PDF",icon:"📝",plan:"Premium",desc:"Convert PDF to Word.",ready:false},
+{name:"Image to Word",cat:"Images",icon:"🔎",plan:"Premium",desc:"Extract text from images.",ready:false},
+{name:"CV Maker",cat:"Other",icon:"📄",plan:"Pro",desc:"Create a professional CV.",ready:false},
+{name:"Invoice Maker",cat:"Other",icon:"🧾",plan:"Pro",desc:"Create invoices.",ready:false},
+{name:"Letter Maker",cat:"Other",icon:"✉️",plan:"Free",desc:"Create printable letters.",ready:false},
+{name:"Background Remover",cat:"Images",icon:"✨",plan:"Premium",desc:"Remove image backgrounds.",ready:false},
+{name:"Barcode Generator",cat:"Other",icon:"▥",plan:"Pro",desc:"Generate barcodes.",ready:false},
+{name:"Certificate Maker",cat:"Other",icon:"🏅",plan:"Pro",desc:"Create certificates.",ready:false}
+];
+
+let activeFilter="All";
+const grid=document.getElementById("toolGrid");
+
+function renderTools(){
+const q=document.getElementById("search").value.toLowerCase();
+const list=tools.filter(t=>(activeFilter==="All"||t.cat===activeFilter)&&(t.name+" "+t.desc).toLowerCase().includes(q));
+grid.innerHTML=list.map(t=>`
+<div class="tool">
+<div class="tool-icon">${t.icon}</div>
+<h3>${t.name}</h3>
+<p>${t.desc}</p>
+<div class="tool-bottom">
+<span class="tag ${t.plan.toLowerCase()}">${t.plan}</span>
+<button class="open-tool" onclick="openTool('${t.name}')">${t.ready?"Open →":"Coming soon"}</button>
+</div>
+</div>`).join("")||"<p>No tools found.</p>";
+}
+
+function setFilter(value,button){
+activeFilter=value;
+document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+renderTools();
+}
+
+function toggleMenu(){document.getElementById("navLinks").classList.toggle("show")}
+
+function showModal(title,html){
+document.getElementById("modalTitle").textContent=title;
+document.getElementById("modalBody").innerHTML=html;
+document.getElementById("modalBg").classList.add("show");
+}
+function closeModal(){document.getElementById("modalBg").classList.remove("show")}
+
+function openTool(name){
+if(name==="Word Counter")return wordCounter();
+if(name==="Text Case Converter")return caseConverter();
+if(name==="Price Calculator")return priceCalculator();
+if(name==="Image Resize"||name==="Image Compress")return imageTool(name);
+if(name==="Image to PDF")return imageToPdf();
+if(name==="QR Code Generator")return qrTool();
+showModal(name,`<div class="notice">This tool is planned for a future update. It is not available yet.</div>`);
+}
+
+function wordCounter(){
+showModal("Word Counter",`
+<div class="field"><label>Enter your text</label><textarea id="wordText" oninput="countWords()"></textarea></div>
+<div class="output" id="wordResult">Words: 0 | Characters: 0</div>`);
+}
+function countWords(){
+let t=document.getElementById("wordText").value;
+let words=t.trim()?t.trim().split(/\s+/).length:0;
+document.getElementById("wordResult").textContent="Words: "+words+" | Characters: "+t.length+" | No spaces: "+t.replace(/\s/g,"").length;
+}
+
+function caseConverter(){
+showModal("Text Case Converter",`
+<div class="field"><label>Your text</label><textarea id="caseText"></textarea></div>
+<button class="btn primary" onclick="convertCase('upper')">UPPERCASE</button>
+<button class="btn secondary" onclick="convertCase('lower')">lowercase</button>
+<button class="btn secondary" onclick="convertCase('title')">Title Case</button>
+<div class="output" id="caseResult"></div>
+<button class="btn outline" onclick="copyResult()">Copy Result</button>`);
+}
+function convertCase(type){
+let t=document.getElementById("caseText").value;
+if(type==="upper")t=t.toUpperCase();
+if(type==="lower")t=t.toLowerCase();
+if(type==="title")t=t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+document.getElementById("caseResult").textContent=t;
+}
+function copyResult(){
+navigator.clipboard.writeText(document.getElementById("caseResult").textContent).then(()=>alert("Copied!")).catch(()=>alert("Copy not supported."));
+}
+
+function priceCalculator(){
+showModal("Price Calculator",`
+<div class="field"><label>Quantity</label><input id="qty" type="number" value="1" min="0"></div>
+<div class="field"><label>Unit Price (Rs.)</label><input id="unit" type="number" value="100" min="0"></div>
+<div class="field"><label>Discount (%)</label><input id="discount" type="number" value="0" min="0" max="100"></div>
+<button class="btn primary" onclick="calculatePrice()">Calculate</button>
+<div class="output" id="priceResult">Total: Rs. 100.00</div>`);
+}
+function calculatePrice(){
+let q=Number(document.getElementById("qty").value)||0;
+let p=Number(document.getElementById("unit").value)||0;
+let d=Math.min(100,Math.max(0,Number(document.getElementById("discount").value)||0));
+let subtotal=q*p,total=subtotal-(subtotal*d/100);
+document.getElementById("priceResult").textContent="Subtotal: Rs. "+subtotal.toFixed(2)+"\nDiscount: Rs. "+(subtotal-total).toFixed(2)+"\nTotal: Rs. "+total.toFixed(2);
+}
+
+function imageTool(name){
+let compress=name==="Image Compress";
+showModal(name,`
+<p>Select an image to ${compress?"compress":"resize"}.</p>
+<div class="field"><input type="file" id="imageFile" accept="image/*"></div>
+<div id="imageOptions" style="display:none">
+<div class="field"><label>Width</label><input id="imgWidth" type="number" value="800"></div>
+<div class="field"><label>Height</label><input id="imgHeight" type="number" value="800"></div>
+${compress?'<div class="field"><label>Quality</label><input id="imgQuality" type="range" min="20" max="95" value="75"></div>':""}
+<button class="btn primary" onclick="processImage(${compress})">Download Image</button>
+</div>`);
+document.getElementById("imageFile").onchange=function(){
+let f=this.files[0];if(!f)return;
+let im=new Image();
+im.onload=()=>{
+document.getElementById("imgWidth").value=im.width;
+document.getElementById("imgHeight").value=im.height;
+document.getElementById("imageOptions").style.display="block";
+window.currentImage=im;
+};
+im.src=URL.createObjectURL(f);
+};
+}
+function processImage(compress){
+let im=window.currentImage;
+let w=Number(document.getElementById("imgWidth").value);
+let h=Number(document.getElementById("imgHeight").value);
+if(!im||w<1||h<1)return alert("Select a valid image and dimensions.");
+let c=document.createElement("canvas");c.width=w;c.height=h;
+c.getContext("2d").drawImage(im,0,0,w,h);
+let quality=compress?Number(document.getElementById("imgQuality").value)/100:.92;
+c.toBlob(blob=>{
+let url=URL.createObjectURL(blob);
+let a=document.createElement("a");a.href=url;a.download="ceylontoolza-image.jpg";a.click();
+URL.revokeObjectURL(url);
+},"image/jpeg",quality);
+}
+
+function imageToPdf(){
+showModal("Image to PDF",`
+<p>Select image files to create a PDF.</p>
+<div class="field"><input type="file" id="pdfImages" accept="image/*" multiple></div>
+<button class="btn primary" onclick="makePdf()">Create PDF</button>
+<div class="output" id="pdfStatus">Choose images first.</div>`);
+}
+async function makePdf(){
+let files=[...document.getElementById("pdfImages").files];
+if(!files.length)return alert("Select images first.");
+try{
+if(!window.jspdf){
+await new Promise((resolve,reject)=>{
+let s=document.createElement("script");
+s.src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+s.onload=resolve;s.onerror=reject;document.head.appendChild(s);
+});
+}
+let pdf=new window.jspdf.jsPDF();
+for(let i=0;i<files.length;i++){
+let data=await new Promise(resolve=>{
+let r=new FileReader();r.onload=()=>resolve(r.result);r.readAsDataURL(files[i]);
+});
+let img=new Image();
+await new Promise(resolve=>{img.onload=resolve;img.src=data});
+let pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+let ratio=Math.min(pw/img.width,ph/img.height);
+let w=img.width*ratio,h=img.height*ratio;
+if(i)pdf.addPage();
+pdf.addImage(data,"JPEG",(pw-w)/2,(ph-h)/2,w,h);
+}
+pdf.save("ceylontoolza-images.pdf");
+document.getElementById("pdfStatus").textContent="PDF downloaded.";
+}catch(e){document.getElementById("pdfStatus").textContent="Could not create PDF. Check your internet connection."}
+}
+
+function qrTool(){
+showModal("QR Code Generator",`
+<div class="field"><label>Text or website URL</label><input id="qrText" placeholder="https://example.com"></div>
+<button class="btn primary" onclick="generateQr()">Generate QR</button>
+<div id="qrArea" class="output"></div>
+<button class="btn outline" onclick="downloadQr()">Download QR</button>`);
+}
+async function generateQr(){
+let text=document.getElementById("qrText").value.trim();
+if(!text)return alert("Enter text or a link.");
+try{
+if(!window.QRCode){
+await new Promise((resolve,reject)=>{
+let s=document.createElement("script");
+s.src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+s.onload=resolve;s.onerror=reject;document.head.appendChild(s);
+});
+}
+let area=document.getElementById("qrArea");area.innerHTML="";
+new QRCode(area,{text,width:180,height:180});
+}catch(e){alert("Could not load QR generator. Check internet.")}
+}
+function downloadQr(){
+let area=document.getElementById("qrArea");
+let img=area.querySelector("img");
+let canvas=area.querySelector("canvas");
+let url=img?img.src:(canvas?canvas.toDataURL():"");
+if(!url)return alert("Generate a QR first.");
+let a=document.createElement("a");a.href=url;a.download="ceylontoolza-qr.png";a.click();
+}
+
+function choosePlan(plan){
+if(plan==="Free"){
+showModal("Free Plan",`<p>The Free plan is Rs. 0 forever.</p><div class="notice">Account registration is not connected yet. This button does not create an account.</div>`);
+return;
+}
+let price=plan==="Pro"?"490":"990";
+showModal(plan+" Plan",`
+<p>You selected the ${plan} plan.</p>
+<h2>Rs. ${price} / month</h2>
+<div class="notice">Payment activation is not connected yet. Do not transfer money until official bank details and the payment process are published.</div>
+<p>The planned payment method is manual bank transfer with owner verification.</p>`);
+}
+
+function loginInfo(){
+showModal("Login / Register",`
+<div class="notice">Secure login and registration will be connected using Supabase in a future update. Do not enter your password on this prototype.</div>`);
+}
+
+function showLegal(title){
+let content={
+"Privacy Policy":"CeylonToolza is currently an early-stage website prototype. Some tools process files in your browser. A full privacy policy will be published before account and payment services launch. Do not upload confidential files to unfinished tools.",
+"Terms & Conditions":"Use CeylonToolza responsibly and only process files you have permission to use. Tools may change while the website is being developed. Keep your own copies of important files. Paid plans are not active yet.",
+"Refund Policy":"Paid subscriptions are not active yet. Do not make payments through this prototype. The refund and cancellation process will be published before paid subscriptions launch."
+};
+showModal(title,"<p>"+content[title]+"</p>");
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+renderTools();
+</script>
+</body>
+</html>
